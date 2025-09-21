@@ -1,0 +1,55 @@
+/* Social Media Management Platform - Main CSS */
+/* This file serves as the entry point for Frappe's build system */
+
+.social-app {
+    /* Base styles for social app */
+}
+
+/* Custom styles for social media management interface */
+.social-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.social-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0077b5; /* LinkedIn blue */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.social-post-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.social-post-status.draft {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.social-post-status.scheduled {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.social-post-status.published {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.social-post-status.failed {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
