@@ -12,8 +12,9 @@ required_apps = ["frappe"]
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "/assets/social/css/social.css"
-app_include_js = "/assets/social/js/social.js"
+# Temporarily disabled to fix build issues - using standalone Vue.js frontend
+# app_include_css = "/assets/social/css/social.css"
+# app_include_js = "/assets/social/js/social.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/social/css/social.css"
