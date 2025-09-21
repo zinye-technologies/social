@@ -1,0 +1,230 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "linkedin_section",
+  "linkedin_enabled",
+  "linkedin_client_id",
+  "linkedin_client_secret",
+  "linkedin_callback_url",
+  "column_break_5",
+  "linkedin_test_connection",
+  "linkedin_last_tested",
+  "posting_section",
+  "default_visibility",
+  "auto_schedule_optimization",
+  "max_posts_per_day",
+  "column_break_11",
+  "retry_failed_posts",
+  "max_retry_attempts",
+  "retry_delay_minutes",
+  "analytics_section",
+  "analytics_enabled",
+  "analytics_sync_frequency",
+  "analytics_retention_days",
+  "column_break_17",
+  "last_analytics_sync",
+  "analytics_api_quota_used",
+  "advanced_section",
+  "debug_mode",
+  "api_rate_limit",
+  "webhook_secret"
+ ],
+ "fields": [
+  {
+   "fieldname": "linkedin_section",
+   "fieldtype": "Section Break",
+   "label": "LinkedIn Configuration"
+  },
+  {
+   "default": "0",
+   "fieldname": "linkedin_enabled",
+   "fieldtype": "Check",
+   "label": "Enable LinkedIn Integration"
+  },
+  {
+   "depends_on": "linkedin_enabled",
+   "fieldname": "linkedin_client_id",
+   "fieldtype": "Data",
+   "label": "LinkedIn Client ID",
+   "mandatory_depends_on": "linkedin_enabled"
+  },
+  {
+   "depends_on": "linkedin_enabled",
+   "fieldname": "linkedin_client_secret",
+   "fieldtype": "Password",
+   "label": "LinkedIn Client Secret",
+   "mandatory_depends_on": "linkedin_enabled"
+  },
+  {
+   "depends_on": "linkedin_enabled",
+   "fieldname": "linkedin_callback_url",
+   "fieldtype": "Data",
+   "label": "LinkedIn Callback URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "linkedin_enabled",
+   "fieldname": "linkedin_test_connection",
+   "fieldtype": "Button",
+   "label": "Test LinkedIn Connection"
+  },
+  {
+   "fieldname": "linkedin_last_tested",
+   "fieldtype": "Datetime",
+   "label": "Last Tested",
+   "read_only": 1
+  },
+  {
+   "fieldname": "posting_section",
+   "fieldtype": "Section Break",
+   "label": "Posting Settings"
+  },
+  {
+   "default": "PUBLIC",
+   "fieldname": "default_visibility",
+   "fieldtype": "Select",
+   "label": "Default Post Visibility",
+   "options": "PUBLIC\nCONNECTIONS"
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_schedule_optimization",
+   "fieldtype": "Check",
+   "label": "Enable Optimal Time Scheduling"
+  },
+  {
+   "default": "10",
+   "fieldname": "max_posts_per_day",
+   "fieldtype": "Int",
+   "label": "Maximum Posts Per Day"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "retry_failed_posts",
+   "fieldtype": "Check",
+   "label": "Retry Failed Posts"
+  },
+  {
+   "default": "3",
+   "depends_on": "retry_failed_posts",
+   "fieldname": "max_retry_attempts",
+   "fieldtype": "Int",
+   "label": "Maximum Retry Attempts"
+  },
+  {
+   "default": "30",
+   "depends_on": "retry_failed_posts",
+   "fieldname": "retry_delay_minutes",
+   "fieldtype": "Int",
+   "label": "Retry Delay (Minutes)"
+  },
+  {
+   "fieldname": "analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Analytics Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "analytics_enabled",
+   "fieldtype": "Check",
+   "label": "Enable Analytics Sync"
+  },
+  {
+   "default": "Every 6 hours",
+   "depends_on": "analytics_enabled",
+   "fieldname": "analytics_sync_frequency",
+   "fieldtype": "Select",
+   "label": "Analytics Sync Frequency",
+   "options": "Every hour\nEvery 6 hours\nDaily\nWeekly"
+  },
+  {
+   "default": "90",
+   "depends_on": "analytics_enabled",
+   "fieldname": "analytics_retention_days",
+   "fieldtype": "Int",
+   "label": "Analytics Retention (Days)"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_analytics_sync",
+   "fieldtype": "Datetime",
+   "label": "Last Analytics Sync",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "analytics_api_quota_used",
+   "fieldtype": "Percent",
+   "label": "API Quota Used",
+   "read_only": 1
+  },
+  {
+   "fieldname": "advanced_section",
+   "fieldtype": "Section Break",
+   "label": "Advanced Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "debug_mode",
+   "fieldtype": "Check",
+   "label": "Enable Debug Mode"
+  },
+  {
+   "default": "100",
+   "fieldname": "api_rate_limit",
+   "fieldtype": "Int",
+   "label": "API Rate Limit (per hour)"
+  },
+  {
+   "fieldname": "webhook_secret",
+   "fieldtype": "Password",
+   "label": "Webhook Secret Key"
+  }
+ ],
+ "icon": "fa fa-cog",
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Social",
+ "name": "Social Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Social Manager",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,482 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2025-09-21 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "post_details_section",
+  "title",
+  "social_profile",
+  "platform",
+  "status",
+  "column_break_6",
+  "author",
+  "created_by_user",
+  "campaign",
+  "content_section",
+  "content",
+  "content_type",
+  "column_break_12",
+  "hashtags",
+  "media_attachments",
+  "link_url",
+  "link_title",
+  "link_description",
+  "scheduling_section",
+  "publish_now",
+  "scheduled_time",
+  "timezone",
+  "column_break_20",
+  "is_recurring",
+  "recurring_frequency",
+  "recurring_until",
+  "approval_section",
+  "approval_status",
+  "approved_by",
+  "approved_at",
+  "column_break_26",
+  "approval_notes",
+  "submitted_for_approval_at",
+  "linkedin_section",
+  "linkedin_post_id",
+  "linkedin_post_url",
+  "linkedin_urn",
+  "column_break_31",
+  "linkedin_visibility",
+  "linkedin_post_type",
+  "analytics_section",
+  "impressions",
+  "clicks",
+  "likes",
+  "comments",
+  "shares",
+  "column_break_38",
+  "engagement_rate",
+  "click_through_rate",
+  "last_analytics_sync",
+  "system_section",
+  "published_at",
+  "failed_at",
+  "failure_reason",
+  "column_break_45",
+  "retry_count",
+  "next_retry_at",
+  "created_at",
+  "modified_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "POST-.YYYY.-.MM.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "post_details_section",
+   "fieldtype": "Section Break",
+   "label": "Post Details"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Post Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "social_profile",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Social Profile",
+   "options": "Social Profile",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "social_profile.platform",
+   "fieldname": "platform",
+   "fieldtype": "Data",
+   "label": "Platform",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nScheduled\nPublished\nFailed\nPending Approval\nApproved\nRejected",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "author",
+   "fieldtype": "Data",
+   "label": "Author Name"
+  },
+  {
+   "default": "__user",
+   "fieldname": "created_by_user",
+   "fieldtype": "Link",
+   "label": "Created By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "campaign",
+   "fieldtype": "Link",
+   "label": "Campaign",
+   "options": "Campaign"
+  },
+  {
+   "fieldname": "content_section",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Text Editor",
+   "label": "Post Content",
+   "reqd": 1
+  },
+  {
+   "default": "Text",
+   "fieldname": "content_type",
+   "fieldtype": "Select",
+   "label": "Content Type",
+   "options": "Text\nImage\nVideo\nDocument\nLink\nPoll"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hashtags",
+   "fieldtype": "Small Text",
+   "label": "Hashtags"
+  },
+  {
+   "fieldname": "media_attachments",
+   "fieldtype": "Table",
+   "label": "Media Attachments",
+   "options": "Content Media"
+  },
+  {
+   "depends_on": "eval:doc.content_type == 'Link'",
+   "fieldname": "link_url",
+   "fieldtype": "Data",
+   "label": "Link URL"
+  },
+  {
+   "depends_on": "eval:doc.content_type == 'Link'",
+   "fieldname": "link_title",
+   "fieldtype": "Data",
+   "label": "Link Title"
+  },
+  {
+   "depends_on": "eval:doc.content_type == 'Link'",
+   "fieldname": "link_description",
+   "fieldtype": "Small Text",
+   "label": "Link Description"
+  },
+  {
+   "fieldname": "scheduling_section",
+   "fieldtype": "Section Break",
+   "label": "Scheduling"
+  },
+  {
+   "default": 0,
+   "fieldname": "publish_now",
+   "fieldtype": "Check",
+   "label": "Publish Now"
+  },
+  {
+   "depends_on": "eval:!doc.publish_now",
+   "fieldname": "scheduled_time",
+   "fieldtype": "Datetime",
+   "label": "Scheduled Time"
+  },
+  {
+   "fetch_from": "social_profile.timezone",
+   "fieldname": "timezone",
+   "fieldtype": "Data",
+   "label": "Timezone",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": 0,
+   "depends_on": "eval:!doc.publish_now",
+   "fieldname": "is_recurring",
+   "fieldtype": "Check",
+   "label": "Recurring Post"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "recurring_frequency",
+   "fieldtype": "Select",
+   "label": "Frequency",
+   "options": "Daily\nWeekly\nMonthly"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "recurring_until",
+   "fieldtype": "Date",
+   "label": "Recurring Until"
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Approval Workflow"
+  },
+  {
+   "default": "Not Required",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "options": "Not Required\nPending\nApproved\nRejected",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_at",
+   "fieldtype": "Datetime",
+   "label": "Approved At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approval_notes",
+   "fieldtype": "Small Text",
+   "label": "Approval Notes"
+  },
+  {
+   "fieldname": "submitted_for_approval_at",
+   "fieldtype": "Datetime",
+   "label": "Submitted for Approval At",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.platform == 'LinkedIn'",
+   "fieldname": "linkedin_section",
+   "fieldtype": "Section Break",
+   "label": "LinkedIn Details"
+  },
+  {
+   "fieldname": "linkedin_post_id",
+   "fieldtype": "Data",
+   "label": "LinkedIn Post ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "linkedin_post_url",
+   "fieldtype": "Data",
+   "label": "LinkedIn Post URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "linkedin_urn",
+   "fieldtype": "Data",
+   "label": "LinkedIn URN",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "PUBLIC",
+   "fieldname": "linkedin_visibility",
+   "fieldtype": "Select",
+   "label": "LinkedIn Visibility",
+   "options": "PUBLIC\nCONNECTIONS\nLOGGED_IN_MEMBERS"
+  },
+  {
+   "fieldname": "linkedin_post_type",
+   "fieldtype": "Data",
+   "label": "LinkedIn Post Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Analytics"
+  },
+  {
+   "fieldname": "impressions",
+   "fieldtype": "Int",
+   "label": "Impressions",
+   "read_only": 1
+  },
+  {
+   "fieldname": "clicks",
+   "fieldtype": "Int",
+   "label": "Clicks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "likes",
+   "fieldtype": "Int",
+   "label": "Likes",
+   "read_only": 1
+  },
+  {
+   "fieldname": "comments",
+   "fieldtype": "Int",
+   "label": "Comments",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shares",
+   "fieldtype": "Int",
+   "label": "Shares",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "engagement_rate",
+   "fieldtype": "Percent",
+   "label": "Engagement Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "click_through_rate",
+   "fieldtype": "Percent",
+   "label": "Click Through Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_analytics_sync",
+   "fieldtype": "Datetime",
+   "label": "Last Analytics Sync",
+   "read_only": 1
+  },
+  {
+   "fieldname": "system_section",
+   "fieldtype": "Section Break",
+   "label": "System Information"
+  },
+  {
+   "fieldname": "published_at",
+   "fieldtype": "Datetime",
+   "label": "Published At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "failed_at",
+   "fieldtype": "Datetime",
+   "label": "Failed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "failure_reason",
+   "fieldtype": "Small Text",
+   "label": "Failure Reason",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "retry_count",
+   "fieldtype": "Int",
+   "label": "Retry Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "next_retry_at",
+   "fieldtype": "Datetime",
+   "label": "Next Retry At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "created_at",
+   "fieldtype": "Datetime",
+   "label": "Created At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modified_at",
+   "fieldtype": "Datetime",
+   "label": "Modified At",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-21 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Social",
+ "name": "Content Post",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Media Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Content Creator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Content Viewer"
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1
+}

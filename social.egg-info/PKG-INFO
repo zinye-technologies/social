@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: social
+Version: 0.0.1
+Summary: Social Media App
+Author: Developer
+Author-email: developer@example.com
+Requires-Dist: frappe
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary

@@ -1,0 +1,387 @@
+{
+ "actions": [],
+ "autoname": "format:LI-ANALYTICS-{social_profile}-{YYYY}-{MM}-{DD}-{####}",
+ "creation": "2025-09-21 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "analytics_info_section",
+  "social_profile",
+  "linkedin_profile_id",
+  "analytics_date",
+  "analytics_type",
+  "column_break_5",
+  "platform",
+  "profile_type",
+  "data_source",
+  "follower_analytics_section",
+  "total_followers",
+  "follower_growth",
+  "follower_demographics",
+  "column_break_11",
+  "total_connections",
+  "connection_growth",
+  "page_analytics_section",
+  "page_views",
+  "unique_page_views",
+  "clicks_to_website",
+  "column_break_17",
+  "page_followers_acquired",
+  "page_followers_lost",
+  "content_analytics_section",
+  "posts_published",
+  "total_impressions",
+  "total_clicks",
+  "total_likes",
+  "total_comments",
+  "total_shares",
+  "column_break_25",
+  "average_engagement_rate",
+  "top_performing_post",
+  "content_reach",
+  "video_views",
+  "engagement_analytics_section",
+  "engagement_breakdown",
+  "audience_analytics_section",
+  "audience_demographics",
+  "top_locations",
+  "top_industries",
+  "column_break_33",
+  "audience_insights",
+  "device_analytics",
+  "system_section",
+  "raw_analytics_data",
+  "sync_status",
+  "synced_at",
+  "column_break_38",
+  "sync_error",
+  "data_freshness",
+  "created_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "analytics_info_section",
+   "fieldtype": "Section Break",
+   "label": "Analytics Information"
+  },
+  {
+   "fieldname": "social_profile",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Social Profile",
+   "options": "Social Profile",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "social_profile.linkedin_profile_id",
+   "fieldname": "linkedin_profile_id",
+   "fieldtype": "Data",
+   "label": "LinkedIn Profile ID",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "analytics_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Analytics Date",
+   "reqd": 1
+  },
+  {
+   "default": "Daily",
+   "fieldname": "analytics_type",
+   "fieldtype": "Select",
+   "label": "Analytics Type",
+   "options": "Daily\nWeekly\nMonthly\nCustom Range"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "social_profile.platform",
+   "fieldname": "platform",
+   "fieldtype": "Data",
+   "label": "Platform",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "social_profile.platform_type",
+   "fieldname": "profile_type",
+   "fieldtype": "Data",
+   "label": "Profile Type",
+   "read_only": 1
+  },
+  {
+   "default": "LinkedIn API",
+   "fieldname": "data_source",
+   "fieldtype": "Data",
+   "label": "Data Source",
+   "read_only": 1
+  },
+  {
+   "fieldname": "follower_analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Follower Analytics"
+  },
+  {
+   "fieldname": "total_followers",
+   "fieldtype": "Int",
+   "label": "Total Followers"
+  },
+  {
+   "fieldname": "follower_growth",
+   "fieldtype": "Int",
+   "label": "Follower Growth"
+  },
+  {
+   "fieldname": "follower_demographics",
+   "fieldtype": "JSON",
+   "label": "Follower Demographics"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_connections",
+   "fieldtype": "Int",
+   "label": "Total Connections"
+  },
+  {
+   "fieldname": "connection_growth",
+   "fieldtype": "Int",
+   "label": "Connection Growth"
+  },
+  {
+   "depends_on": "eval:doc.profile_type == 'Company Page'",
+   "fieldname": "page_analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Page Analytics"
+  },
+  {
+   "fieldname": "page_views",
+   "fieldtype": "Int",
+   "label": "Page Views"
+  },
+  {
+   "fieldname": "unique_page_views",
+   "fieldtype": "Int",
+   "label": "Unique Page Views"
+  },
+  {
+   "fieldname": "clicks_to_website",
+   "fieldtype": "Int",
+   "label": "Clicks to Website"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "page_followers_acquired",
+   "fieldtype": "Int",
+   "label": "Page Followers Acquired"
+  },
+  {
+   "fieldname": "page_followers_lost",
+   "fieldtype": "Int",
+   "label": "Page Followers Lost"
+  },
+  {
+   "fieldname": "content_analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Content Analytics"
+  },
+  {
+   "fieldname": "posts_published",
+   "fieldtype": "Int",
+   "label": "Posts Published"
+  },
+  {
+   "fieldname": "total_impressions",
+   "fieldtype": "Int",
+   "label": "Total Impressions"
+  },
+  {
+   "fieldname": "total_clicks",
+   "fieldtype": "Int",
+   "label": "Total Clicks"
+  },
+  {
+   "fieldname": "total_likes",
+   "fieldtype": "Int",
+   "label": "Total Likes"
+  },
+  {
+   "fieldname": "total_comments",
+   "fieldtype": "Int",
+   "label": "Total Comments"
+  },
+  {
+   "fieldname": "total_shares",
+   "fieldtype": "Int",
+   "label": "Total Shares"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "average_engagement_rate",
+   "fieldtype": "Percent",
+   "label": "Average Engagement Rate"
+  },
+  {
+   "fieldname": "top_performing_post",
+   "fieldtype": "Link",
+   "label": "Top Performing Post",
+   "options": "Content Post"
+  },
+  {
+   "fieldname": "content_reach",
+   "fieldtype": "Int",
+   "label": "Content Reach"
+  },
+  {
+   "fieldname": "video_views",
+   "fieldtype": "Int",
+   "label": "Video Views"
+  },
+  {
+   "fieldname": "engagement_analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Engagement Analytics"
+  },
+  {
+   "fieldname": "engagement_breakdown",
+   "fieldtype": "JSON",
+   "label": "Engagement Breakdown"
+  },
+  {
+   "fieldname": "audience_analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Audience Analytics"
+  },
+  {
+   "fieldname": "audience_demographics",
+   "fieldtype": "JSON",
+   "label": "Audience Demographics"
+  },
+  {
+   "fieldname": "top_locations",
+   "fieldtype": "JSON",
+   "label": "Top Locations"
+  },
+  {
+   "fieldname": "top_industries",
+   "fieldtype": "JSON",
+   "label": "Top Industries"
+  },
+  {
+   "fieldname": "column_break_33",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "audience_insights",
+   "fieldtype": "JSON",
+   "label": "Audience Insights"
+  },
+  {
+   "fieldname": "device_analytics",
+   "fieldtype": "JSON",
+   "label": "Device Analytics"
+  },
+  {
+   "fieldname": "system_section",
+   "fieldtype": "Section Break",
+   "label": "System Information"
+  },
+  {
+   "fieldname": "raw_analytics_data",
+   "fieldtype": "JSON",
+   "label": "Raw Analytics Data"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "sync_status",
+   "fieldtype": "Select",
+   "label": "Sync Status",
+   "options": "Pending\nIn Progress\nCompleted\nFailed"
+  },
+  {
+   "fieldname": "synced_at",
+   "fieldtype": "Datetime",
+   "label": "Synced At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sync_error",
+   "fieldtype": "Small Text",
+   "label": "Sync Error"
+  },
+  {
+   "fieldname": "data_freshness",
+   "fieldtype": "Data",
+   "label": "Data Freshness",
+   "read_only": 1
+  },
+  {
+   "fieldname": "created_at",
+   "fieldtype": "Datetime",
+   "label": "Created At",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-21 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Social",
+ "name": "LinkedIn Analytics",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Media Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Content Creator"
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Content Viewer"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

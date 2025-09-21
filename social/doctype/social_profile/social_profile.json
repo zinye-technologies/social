@@ -1,0 +1,284 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:profile_name",
+ "creation": "2025-09-21 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "profile_info_section",
+  "profile_name",
+  "platform",
+  "platform_type",
+  "user",
+  "column_break_5",
+  "is_active",
+  "profile_url",
+  "profile_image",
+  "linkedin_section",
+  "linkedin_profile_id",
+  "linkedin_access_token",
+  "linkedin_refresh_token",
+  "linkedin_token_expires_at",
+  "column_break_12",
+  "linkedin_company_id",
+  "linkedin_company_name",
+  "linkedin_profile_type",
+  "analytics_section",
+  "total_followers",
+  "total_connections",
+  "total_posts",
+  "column_break_18",
+  "last_analytics_sync",
+  "analytics_enabled",
+  "settings_section",
+  "auto_sync_analytics",
+  "post_approval_required",
+  "default_posting_time",
+  "column_break_24",
+  "timezone",
+  "created_at",
+  "modified_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "profile_info_section",
+   "fieldtype": "Section Break",
+   "label": "Profile Information"
+  },
+  {
+   "fieldname": "profile_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Profile Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "LinkedIn",
+   "fieldname": "platform",
+   "fieldtype": "Select",
+   "label": "Platform",
+   "options": "LinkedIn\nFacebook\nTwitter\nInstagram\nReddit\nTikTok\nYouTube\nPinterest",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.platform == 'LinkedIn'",
+   "fieldname": "platform_type",
+   "fieldtype": "Select",
+   "label": "LinkedIn Profile Type",
+   "options": "Personal Profile\nCompany Page",
+   "reqd": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": 1,
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "profile_url",
+   "fieldtype": "Data",
+   "label": "Profile URL"
+  },
+  {
+   "fieldname": "profile_image",
+   "fieldtype": "Attach Image",
+   "label": "Profile Image"
+  },
+  {
+   "depends_on": "eval:doc.platform == 'LinkedIn'",
+   "fieldname": "linkedin_section",
+   "fieldtype": "Section Break",
+   "label": "LinkedIn Integration"
+  },
+  {
+   "fieldname": "linkedin_profile_id",
+   "fieldtype": "Data",
+   "label": "LinkedIn Profile/Company ID"
+  },
+  {
+   "fieldname": "linkedin_access_token",
+   "fieldtype": "Password",
+   "label": "LinkedIn Access Token"
+  },
+  {
+   "fieldname": "linkedin_refresh_token",
+   "fieldtype": "Password",
+   "label": "LinkedIn Refresh Token"
+  },
+  {
+   "fieldname": "linkedin_token_expires_at",
+   "fieldtype": "Datetime",
+   "label": "Token Expires At"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.platform_type == 'Company Page'",
+   "fieldname": "linkedin_company_id",
+   "fieldtype": "Data",
+   "label": "LinkedIn Company ID"
+  },
+  {
+   "depends_on": "eval:doc.platform_type == 'Company Page'",
+   "fieldname": "linkedin_company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "linkedin_profile_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "LinkedIn Profile Type"
+  },
+  {
+   "fieldname": "analytics_section",
+   "fieldtype": "Section Break",
+   "label": "Analytics Overview"
+  },
+  {
+   "fieldname": "total_followers",
+   "fieldtype": "Int",
+   "label": "Total Followers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_connections",
+   "fieldtype": "Int",
+   "label": "Total Connections",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_posts",
+   "fieldtype": "Int",
+   "label": "Total Posts",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_analytics_sync",
+   "fieldtype": "Datetime",
+   "label": "Last Analytics Sync",
+   "read_only": 1
+  },
+  {
+   "default": 1,
+   "fieldname": "analytics_enabled",
+   "fieldtype": "Check",
+   "label": "Enable Analytics Sync"
+  },
+  {
+   "fieldname": "settings_section",
+   "fieldtype": "Section Break",
+   "label": "Settings"
+  },
+  {
+   "default": 1,
+   "fieldname": "auto_sync_analytics",
+   "fieldtype": "Check",
+   "label": "Auto Sync Analytics"
+  },
+  {
+   "default": 0,
+   "fieldname": "post_approval_required",
+   "fieldtype": "Check",
+   "label": "Post Approval Required"
+  },
+  {
+   "default": "09:00",
+   "fieldname": "default_posting_time",
+   "fieldtype": "Time",
+   "label": "Default Posting Time"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "UTC",
+   "fieldname": "timezone",
+   "fieldtype": "Select",
+   "label": "Timezone",
+   "options": "UTC\nUS/Eastern\nUS/Central\nUS/Mountain\nUS/Pacific\nEurope/London\nEurope/Paris\nEurope/Berlin\nAsia/Tokyo\nAsia/Shanghai\nAsia/Kolkata\nAustralia/Sydney"
+  },
+  {
+   "fieldname": "created_at",
+   "fieldtype": "Datetime",
+   "label": "Created At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modified_at",
+   "fieldtype": "Datetime",
+   "label": "Modified At",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-21 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Social",
+ "name": "Social Profile",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Media Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Content Creator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1
+}
