@@ -56,7 +56,7 @@ def process_scheduled_posts():
                     )
 
                     processed_count += 1
-                    frappe.log_error(f"Successfully published scheduled post: {post.name}")
+                    frappe.log(f"Successfully published scheduled post: {post.name}")
 
                 else:
                     # Mark as failed
@@ -76,7 +76,7 @@ def process_scheduled_posts():
                 failed_count += 1
 
         if processed_count > 0 or failed_count > 0:
-            frappe.log_error(f"Scheduled posts processing complete: {processed_count} published, {failed_count} failed")
+            frappe.log(f"Scheduled posts processing complete: {processed_count} published, {failed_count} failed")
 
     except Exception as e:
         frappe.log_error(f"Error in process_scheduled_posts: {str(e)}")
@@ -111,7 +111,7 @@ def schedule_retry_if_needed(post_doc):
                 scheduled_time=retry_time
             )
 
-            frappe.log_error(f"Scheduled retry for post {post_doc.name} in {retry_delay} minutes (attempt {current_retries + 1}/{max_attempts})")
+            frappe.log(f"Scheduled retry for post {post_doc.name} in {retry_delay} minutes (attempt {current_retries + 1}/{max_attempts})")
 
     except Exception as e:
         frappe.log_error(f"Error scheduling retry for post {post_doc.name}: {str(e)}")
@@ -131,7 +131,7 @@ def retry_failed_post(post_id):
         result = publisher.retry_failed_post(post)
 
         if result["success"]:
-            frappe.log_error(f"Successfully retried and published post: {post_id}")
+            frappe.log(f"Successfully retried and published post: {post_id}")
 
             # Schedule analytics sync
             frappe.enqueue(

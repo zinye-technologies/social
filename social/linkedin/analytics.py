@@ -199,7 +199,7 @@ def sync_linkedin_analytics():
         from social.doctype.social_settings.social_settings import update_analytics_sync_status
         update_analytics_sync_status()
 
-        frappe.log_error(f"LinkedIn analytics sync completed: {synced_count} synced, {failed_count} failed")
+        frappe.log(f"LinkedIn analytics sync completed: {synced_count} synced, {failed_count} failed")
 
     except Exception as e:
         frappe.log_error(f"Error in sync_linkedin_analytics: {str(e)}")
