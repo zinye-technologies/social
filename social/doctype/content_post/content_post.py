@@ -217,7 +217,7 @@ class ContentPost(Document):
         # Get users with approval permissions
         approvers = frappe.get_all(
             "Has Role",
-            filters={"role": ["in", ["Social Media Manager", "System Manager"]], "parent": ["!=", self.created_by_user]},
+            filters={"role": ["in", ["Social Media Manager", "System Manager"]], "parent": ["!=", self.owner]},
             fields=["parent as user"]
         )
 

@@ -19,7 +19,7 @@ class LinkedInAPI:
     def get_profile_info(self):
         """Get LinkedIn profile information"""
         response = requests.get(
-            f"{self.base_url}/people/~:(id,firstName,lastName,profilePicture)",
+            f"{self.base_url}/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))",
             headers=self.headers
         )
 
@@ -31,7 +31,7 @@ class LinkedInAPI:
     def get_company_info(self, company_id):
         """Get LinkedIn company page information"""
         response = requests.get(
-            f"{self.base_url}/organizations/{company_id}:(id,name,logoV2)",
+            f"{self.base_url}/organizations/{company_id}?projection=(id,name,logo(elements*))",
             headers=self.headers
         )
 
@@ -227,22 +227,6 @@ class LinkedInAPI:
 
         return asset_urn
 
-    def get_post_analytics(self, post_urn):
-        """Get analytics for a specific post"""
-
-        # Extract post ID from URN
-        post_id = post_urn.split(":")[-1]
-
-        response = requests.get(
-            f"{self.base_url}/socialActions/{post_id}",
-            headers=self.headers
-        )
-
-        if response.status_code != 200:
-            return {}
-
-        return response.json()
-
     def get_profile_analytics(self, profile_id, is_company=False, start_date=None, end_date=None):
         """Get profile analytics"""
 
@@ -302,11 +286,11 @@ class LinkedInAPI:
 
         return analytics_data
 
-    def get_post_engagement_stats(self, post_id):
+    def get_post_engagement_stats(self, post_urn):
         """Get engagement statistics for a post"""
 
         response = requests.get(
-            f"{self.base_url}/socialMetadata/urn:li:ugcPost:{post_id}",
+            f"{self.base_url}/socialActions/{post_urn}",
             headers=self.headers
         )
 
@@ -316,7 +300,8 @@ class LinkedInAPI:
         data = response.json()
 
         return {
-            "likes": data.get("likesSummary", {}).get("totalLikes", 0),
-            "comments": data.get("commentsSummary", {}).get("totalComments", 0),
-            "shares": data.get("sharesSummary", {}).get("totalShares", 0)
+            "likes": data.get("likes", {}).get("summary", 0),
+            "comments": data.get("comments", {}).get("summary", 0),
+            "shares": data.get("shares", {}).get("summary", 0),
+            "reposts": 0  # Not directly available, included in shares
         }

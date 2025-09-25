@@ -73,10 +73,7 @@ class LinkedInPublisher:
             post_urn = result.get("id", "")
 
             # Generate post URL
-            if is_company:
-                post_url = f"https://www.linkedin.com/feed/update/{post_urn}/"
-            else:
-                post_url = f"https://www.linkedin.com/feed/update/{post_urn}/"
+            post_url = f"https://www.linkedin.com/feed/update/{post_urn}/"
 
             return {
                 "success": True,

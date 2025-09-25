@@ -153,7 +153,7 @@ class LinkedInAuth:
 
         # Get basic profile info
         profile_response = requests.get(
-            "https://api.linkedin.com/v2/people/~:(id,firstName,lastName,profilePicture)",
+            "https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))",
             headers=headers
         )
 
@@ -174,8 +174,8 @@ class LinkedInAuth:
 
         return {
             "profile_id": profile_data.get("id"),
-            "first_name": profile_data.get("firstName", {}).get("localized", {}).get("en_US", ""),
-            "last_name": profile_data.get("lastName", {}).get("localized", {}).get("en_US", ""),
+            "first_name": profile_data.get("firstName"),
+            "last_name": profile_data.get("lastName"),
             "profile_picture": self._extract_profile_picture(profile_data.get("profilePicture", {})),
             "email": self._extract_email(email_data),
             "profile_url": f"https://www.linkedin.com/in/{profile_data.get('id', '')}"
@@ -204,7 +204,7 @@ class LinkedInAuth:
 
                 # Get organization details
                 org_response = requests.get(
-                    f"https://api.linkedin.com/v2/organizations/{org_id}:(id,name,logoV2)",
+                    f"https://api.linkedin.com/v2/organizations/{org_id}?projection=(id,name,logo(elements*))",
                     headers=headers
                 )
 
@@ -212,8 +212,8 @@ class LinkedInAuth:
                     org_data = org_response.json()
                     company_pages.append({
                         "id": org_data.get("id"),
-                        "name": org_data.get("name", {}).get("localized", {}).get("en_US", ""),
-                        "logo": self._extract_company_logo(org_data.get("logoV2", {}))
+                        "name": org_data.get("name"),
+                        "logo": self._extract_company_logo(org_data.get("logo", {}))
                     })
 
         return company_pages
@@ -234,8 +234,7 @@ class LinkedInAuth:
     def _extract_company_logo(self, logo_data):
         """Extract company logo URL from LinkedIn API response"""
         try:
-            original_logo = logo_data.get("original~", {})
-            elements = original_logo.get("elements", [])
+            elements = logo_data.get("elements", [])
             if elements:
                 identifiers = elements[0].get("identifiers", [])
                 if identifiers:
